@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_flutter_demo/Views/splash.dart';
+import 'package:riverpod_flutter_demo/Routes/routeChanger.dart';
 
 void main() {
   runApp(
@@ -21,9 +21,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.blue,
       ),
-      home: const Spalsh(),
+      home: Consumer(builder: (context, state, child) {
+        final route = state.watch(routeChanger);
+        return route;
+      }),
     );
   }
 }

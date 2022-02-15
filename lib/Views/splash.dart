@@ -5,13 +5,10 @@ class Spalsh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: const Center(
-        child: FlutterLogo(
-          style: FlutterLogoStyle.horizontal,
-        ),
+    return const Center(
+      child: FlutterLogo(
+        size: 200,
+        style: FlutterLogoStyle.horizontal,
       ),
     );
   }
