@@ -10,7 +10,7 @@ final routeChanger = StateNotifierProvider<WidgetChanger, Widget>((ref) {
 class WidgetChanger extends StateNotifier<Widget> {
   WidgetChanger() : super(const Spalsh()) {
     Future.delayed(const Duration(seconds: 3)).then(
-      (value) => state = const Home(),
+      (value) => state = Home(),
     );
   }
 }
