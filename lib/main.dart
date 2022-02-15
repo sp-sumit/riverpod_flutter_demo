@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_flutter_demo/Providers/smsProvider.dart';
 import 'package:riverpod_flutter_demo/Routes/routeChanger.dart';
+import 'package:telephony/telephony.dart';
+
+onBackgroundHandler(SmsMessage smsMessage) async {
+  // print(smsMessage);
+  //
+}
 
 void main() {
   runApp(
