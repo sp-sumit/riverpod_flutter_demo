@@ -56,28 +56,33 @@ class Home extends StatelessWidget {
               },
               child: const Text('Send Message'),
             ),
-            Consumer(builder: (context, state, child) {
-              final AsyncValue<List<SmsMessage>> smsList =
-                  state.watch(smsProvider);
-              return smsList.when(
-                  data: (list) => Expanded(
-                        child: ListView.builder(
-                          itemCount: list.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Text(list[index].address.toString()),
-                                Text(
-                                  list[index].body.toString(),
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      ),
-                  error: (e, s) => Text(e.toString()),
-                  loading: () => const CircularProgressIndicator());
-            }),
+            Expanded(
+              child: Consumer(builder: (context, state, child) {
+                final smsList = state.watch(smsProvider);
+                final newMsg = state.watch(sms);
+                if (newMsg.isNotEmpty) {
+                  state.refresh(smsProvider);
+                }
+                return smsList.when(
+                    data: (list) {
+                      return ListView.builder(
+                        itemCount: list.length,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Text(list[index].address.toString()),
+                              Text(
+                                list[index].body.toString(),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    error: (e, s) => Text(e.toString()),
+                    loading: () => const CircularProgressIndicator());
+              }),
+            ),
           ],
         ),
       ),

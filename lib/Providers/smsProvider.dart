@@ -9,12 +9,22 @@ final smsProvider = FutureProvider<List<SmsMessage>>((ref) async {
   ], sortOrder: [
     OrderBy(SmsColumn.DATE, sort: Sort.DESC),
   ]);
-  Telephony.instance.listenIncomingSms(
-    onNewMessage: (smsMessage) async {
-      list.add(smsMessage);
-    },
-    listenInBackground: true,
-    onBackgroundMessage: onBackgroundHandler,
-  );
+
   return list;
 });
+
+final sms = StateNotifierProvider<SmsManager, List<SmsMessage>>((ref) {
+  return SmsManager();
+});
+
+class SmsManager extends StateNotifier<List<SmsMessage>> {
+  SmsManager() : super([]) {
+    Telephony.instance.listenIncomingSms(
+      onNewMessage: ((message) {
+        state = [message];
+        print('--------------------------------');
+      }),
+      onBackgroundMessage: onBackgroundHandler,
+    );
+  }
+}
