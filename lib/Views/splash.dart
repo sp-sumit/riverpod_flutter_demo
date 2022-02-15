@@ -8,7 +8,11 @@ class Spalsh extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Theme.of(context).backgroundColor,
-      body: Container(),
+      body: const Center(
+        child: FlutterLogo(
+          style: FlutterLogoStyle.horizontal,
+        ),
+      ),
     );
   }
 }
