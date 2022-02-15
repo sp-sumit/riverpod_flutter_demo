@@ -43,17 +43,19 @@ class Home extends StatelessWidget {
               height: size.height * 0.05,
             ),
             ElevatedButton(
-              onPressed: () {
-                Telephony.instance
-                    .sendSms(
-                  to: no.text.trim(),
-                  message: msg.text,
-                )
-                    .whenComplete(() {
-                  no.clear();
-                  msg.clear();
-                });
-              },
+              onPressed: no.text.isNotEmpty && msg.text.isNotEmpty
+                  ? () {
+                      Telephony.instance
+                          .sendSms(
+                        to: no.text.trim(),
+                        message: msg.text,
+                      )
+                          .whenComplete(() {
+                        no.clear();
+                        msg.clear();
+                      });
+                    }
+                  : null,
               child: const Text('Send Message'),
             ),
             Expanded(

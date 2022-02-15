@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_flutter_demo/Providers/smsProvider.dart';
 import 'package:riverpod_flutter_demo/Routes/routeChanger.dart';
-import 'package:telephony/telephony.dart';
-
-onBackgroundHandler(SmsMessage smsMessage) async {
-  // print(smsMessage);
-  //
-}
 
 void main() {
   runApp(
@@ -28,7 +21,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        backgroundColor: Colors.blue,
       ),
       home: Consumer(builder: (context, state, child) {
         final route = state.watch(routeChanger);

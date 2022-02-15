@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_flutter_demo/main.dart';
 import 'package:telephony/telephony.dart';
 
 final smsProvider = FutureProvider<List<SmsMessage>>((ref) async {
@@ -22,9 +21,8 @@ class SmsManager extends StateNotifier<List<SmsMessage>> {
     Telephony.instance.listenIncomingSms(
       onNewMessage: ((message) {
         state = [message];
-        print('--------------------------------');
       }),
-      onBackgroundMessage: onBackgroundHandler,
+      listenInBackground: false,
     );
   }
 }
