@@ -14,7 +14,7 @@ dependencies:
   
   cupertino_icons: ^1.0.2
 
-  riverpod:
+  flutter_riverpod:
   telephony:
 
 dev_dependencies:
